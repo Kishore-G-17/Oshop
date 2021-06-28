@@ -1,0 +1,12 @@
+.dropdown-toggle {
+  cursor: pointer;
+}
+.navbar {
+  z-index: 2000;
+}
+.totalCartQuantity {
+  background: #ff9f00;
+  padding: 0px 5px;
+  border-radius: 100%;
+  margin-left: 5px;
+}

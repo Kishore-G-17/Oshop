@@ -1,0 +1,19 @@
+<div class="card m-4" style="width: 20rem">
+  <img class="card-img-top" [src]="product?.ImageUrl" />
+  <div class="card-body">
+    <h5 class="card-title">{{ product?.Title }}</h5>
+    <p class="card-text">{{ product?.Price | currency: "INR" }}</p>
+  </div>
+  <div class="card-footer">    
+    <button
+      *ngIf= " (product | getQuantity | async) === 0 ; else updateQuantity"      
+      class="btn btn-primary btn-block"
+      (click)="cartService.AddToCart(product,'+')">
+      Add to cart
+    </button>
+    <ng-template #updateQuantity>
+      <product-quantity [Product]="product">
+      </product-quantity>      
+    </ng-template>
+  </div>
+</div>

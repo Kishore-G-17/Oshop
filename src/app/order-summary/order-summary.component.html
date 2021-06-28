@@ -1,0 +1,19 @@
+<div class="card">
+    <h5 class="card-header">{{ appUser?.name || 'username'}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">Order summary</h5>
+        <p class="card-text" *ngIf="isMyOrder && !isManageOrder">you have {{ '' | getTotalCartQuantity | async }} item(s) in your shopping cart</p>
+        <table class='table'>
+            <tbody>
+                <tr *ngFor="let cartItem of cartItems">
+                    <td>{{ cartItem?.quantity }} x {{ cartItem?.product?.Title }}</td>
+                    <td>{{ cartItem?.product?.Price | currency: 'INR' }}</td>
+                </tr>
+                <tr>
+                    <td class="total">Total</td>
+                    <td class="total">{{ (cartItems | getTotalPrice) | currency: 'INR' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

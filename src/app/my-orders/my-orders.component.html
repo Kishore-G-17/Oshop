@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-6">   
+        <h2>Order details</h2>     
+        <table class="table">            
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>TotalPrice</td>
+                    <td>View</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders; index as i">
+                    <ng-container *ngIf="orders">
+                        <td>{{ i+ 1 }}</td>
+                        <td>{{ order.shippingDetails.Name }}</td>
+                        <td>{{ order.totalPrice }}</td>
+                        <td>
+                            <button class="badge badge-warning badge-pill" 
+                                    (click)="ClickedOrder(order)">view
+                            </button>
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6" *ngIf="closeView">
+        <order-summary [AppUSer]='appUser' [CartITems]="clickedOrder.items" [IsMyOrder]="false">
+
+        </order-summary>
+        <div class="card">
+            <h5 class="card-header">Shipping address</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{ clickedOrder.shippingDetails.Name }}</h5>
+                <p class="card-text">{{ clickedOrder.shippingDetails.Address1 }}</p>
+                <p class="cart-text">{{ clickedOrder.shippingDetails.Address2 }}</p>
+                <p class="cart-text">{{ clickedOrder.shippingDetails.City }}</p>
+                <button class="btn btn-danger" (click)="closeView = false">close</button>
+            </div>
+        </div>
+    </div>
+</div>

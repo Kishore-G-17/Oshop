@@ -1,0 +1,88 @@
+<div class = "row">
+    <div class="col-md-6">
+        <h2 class="mt-5">Shipping Details</h2>
+        <form #Form="ngForm" (ngSubmit)="placeOrder(Form)" id="form">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input 
+                    id="Name"
+                    class="form-control"
+                    type="text" 
+                    required
+                    name="Name"
+                    [(ngModel)]="NAME"
+                    placeholder="Enter your full name"                   
+                    #Name="ngModel">
+                <div class="alert alert-danger"
+                     *ngIf="Name.touched && Name.invalid">
+                     Name is required
+                </div>
+            </div>   
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input 
+                    id="Address"
+                    class="form-control"
+                    type="text" 
+                    required
+                    name="Address1"
+                    [(ngModel)]="ADDRESS1"      
+                    placeholder="Address line 1"              
+                    #Address1="ngModel">
+                <div class="alert alert-danger"
+                     *ngIf="Address1.touched && Address1.invalid">
+                     Address line 1 is required                     
+                </div>
+                <input 
+                    id="Address"
+                    class="form-control mt-4"
+                    type="text" 
+                    required
+                    name="Address2"
+                    [(ngModel)]="ADDRESS2" 
+                    placeholder="Address line 2"                 
+                    #Address2="ngModel">              
+                <div class="alert alert-danger"
+                     *ngIf="Name.touched && Name.invalid">
+                     Address line 2 is required                 
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="City">City</label>
+                <input 
+                    id="City"
+                    class="form-control"
+                    type="text" 
+                    required
+                    name="City"
+                    [(ngModel)]="CITY"   
+                    placeholder="City"                 
+                    #City="ngModel">
+                <div class="alert alert-danger"
+                     *ngIf="City.touched && City.invalid">
+                    City is required                     
+                </div>                
+            </div>   
+            <button *ngIf="!isManageOrder" type="submit" class="btn btn-primary">
+                Place order
+            </button>
+            <a *ngIf="isManageOrder"                 
+               type="button" 
+               class="btn btn-primary mr-4" 
+               (click)="update(Form.value)">
+                Update
+            </a>
+            <a *ngIf="isManageOrder"              
+               type="button" 
+               class="btn btn-danger" 
+               (click)="delete()">
+                Delete
+            </a>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <order-summary [AppUSer]="appUser" [CartITems]="cartItems" [IsManageOrder]="isManageOrder">
+
+        </order-summary>
+    </div>
+</div>
