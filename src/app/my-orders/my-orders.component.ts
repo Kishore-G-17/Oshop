@@ -41,6 +41,7 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
         return this.orderService.getOrders().valueChanges();
       })
       .switchMap((orders: Order[]) => {
+        orders = [];
         for (let order of orders) {
           if (order?.userId === this.userId) this.orders.push(order);
         }
